@@ -3,6 +3,8 @@ import { UserI } from 'src/interfaces/user.interface';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 
+export type User = any;
+
 @Injectable()
 export class UsersService {
 
@@ -27,6 +29,10 @@ export class UsersService {
 
     async deleteUser(idUser: string ): Promise<UserI> {
         return await this.userModel.findByIdAndRemove(idUser);
+    }
+
+    async findOne(username: string): Promise<User | undefined> {
+        return this.userModel.findOne({ name: username });
     }
 
 }
