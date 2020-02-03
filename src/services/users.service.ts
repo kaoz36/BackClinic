@@ -8,27 +8,7 @@ export type User = any;
 @Injectable()
 export class UsersService {
 
-    private readonly users: User[];
-
-    constructor(@InjectModel('User') private readonly userModel: Model<UserI>) {
-        this.users = [
-            {
-              userId: 1,
-              username: 'john',
-              password: 'changeme',
-            },
-            {
-              userId: 2,
-              username: 'chris',
-              password: 'secret',
-            },
-            {
-              userId: 3,
-              username: 'maria',
-              password: 'guess',
-            },
-        ];
-    }
+    constructor(@InjectModel('User') private readonly userModel: Model<UserI>) {}
 
     async showAllUsers(): Promise<UserI[]> {
         return await this.userModel.find();
@@ -52,8 +32,7 @@ export class UsersService {
     }
 
     async findOne(username: string): Promise<User | undefined> {
-        // return this.userModel.findOne({ name: username });
-        return this.users.find(user => user.username === username);
-      }
+        return this.userModel.findOne({ name: username });
+    }
 
 }

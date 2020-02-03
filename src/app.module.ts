@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
 import { UsersController } from './controllers/users.controller';
 import { UsersService } from './services/users.service';
-import { MongooseModule } from '@nestjs/mongoose';
 import { RolesController } from './controllers/roles.controller';
 import { RolesService } from './services/roles.service';
 import { RolSchema } from './schemas/rol.schema';
@@ -37,8 +37,7 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     UsersModule
   ],
-  controllers: [AppController, UsersController, RolesController, DiseaseHistoryController, ClinicalController, MeasuresController, PatientsController],
+  controllers: [AppController, RolesController, DiseaseHistoryController, ClinicalController, MeasuresController, PatientsController],
   providers: [AppService, UsersService, RolesService, DiseaseHistoryService, ClinicalService, MeasuresService, PatientsService],
 })
-
 export class AppModule {}
